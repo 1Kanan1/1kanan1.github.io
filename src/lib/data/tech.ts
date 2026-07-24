@@ -16,6 +16,7 @@ export const techIcons: Record<string, string> = {
   gitlab: "devicon-gitlab-plain",
   docker: "devicon-docker-plain",
   figma: "devicon-figma-plain",
+  fastapi: "devicon-fastapi-plain",
 };
 
 export const techUrls: Record<string, string> = {
@@ -37,6 +38,7 @@ export const techUrls: Record<string, string> = {
   docker: "https://www.docker.com/",
   figma: "https://www.figma.com/",
   radix: "https://www.radix-ui.com/",
+  fastapi: "https://fastapi.tiangolo.com/",
 };
 
 export function getTechIcon(name: string): string | null {

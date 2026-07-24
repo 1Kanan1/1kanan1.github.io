@@ -5,7 +5,7 @@
         { name: "About", url: "#about" },
         { name: "Stack", url: "#stack" },
         { name: "Experience", url: "#experience" },
-        { name: "Projects", url: "#projects" },
+        // { name: "Projects", url: "#projects" },
     ];
 </script>
 

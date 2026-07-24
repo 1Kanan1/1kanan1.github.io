@@ -1,6 +1,6 @@
 export const aboutData = {
   summary:
-    "Software Engineer focused on minimal, efficient, and beautiful web experiences.",
+    "Software Engineer with <b>2+ years of experience</b> and a strong foundation in clean code architecture, design patterns, and scalable system design. Adept at applying SOLID, KISS, and DRY principles to eliminate technical debt and build highly maintainable applications. Experienced in optimizing backend systems, streamlining developer workflows, and delivering user-centric technical solutions.",
 };
 
 export const stackData = [
@@ -28,27 +28,46 @@ export const stackData = [
 
 export const experienceData = [
   {
-    company: "Andersen Lab",
+    company: "Andersen LLC",
+    icon: "andersen",
     roles: [
       {
         id: "exp-1",
-        title: "Middle Frontend Developer",
-        dates: "08.2025 - present",
+        title: "Software Engineer",
+        dates: "08.2025 - 08.2026",
         description: [
-          "Develop AI Chat and AI Assistant features.",
-          "Develop Whiteboards with real-time collaboration.",
+          "Built scalable web applications using <b>React</b> and <b>Next.js</b>, leveraging <b>React Router</b> for client-side navigation.",
+          "Integrated <b>REST/GraphQL APIs</b> using <b>Axios</b>, <b>Redux</b>, and <b>TanStack Query</b> for efficient state management.",
+          "Built reusable component libraries with <b>TailwindCSS</b> & <b>MUI</b>, adhering to <b>Feature-Sliced Design (FSD)</b>.",
+          "Containerized applications using <b>Docker</b> and enforced code quality with <b>ESLint</b>, <b>Prettier</b>, and <b>Oxlint</b> in an <b>Agile</b> workflow.",
         ],
-        stack: ["typescript", "react", "tailwindcss"],
+        stack: [
+          "typescript",
+          "react",
+          "redux",
+          "next.js",
+          "tailwind css",
+          "docker",
+        ],
       },
+    ],
+  },
+  {
+    company: "NurBank",
+    icon: "nurbank",
+    roles: [
       {
         id: "exp-2",
-        title: "Junior Frontend Developer",
-        dates: "01.2024 - 08.2025",
+        title: "Python Developer",
+        dates: "06.2024 - 04.2025",
         description: [
-          "Develop interactive chart and analytics widgets for the Dashboard.",
-          "Implement robust frontend solutions for web and mobile platforms.",
+          "Engineered high-performance backend microservices using <b>Python</b> and <b>FastAPI</b>.",
+          "Refactored core legacy codebases applying <b>SOLID principles</b> to reduce technical debt and improve maintainability.",
+          "Optimized <b>PostgreSQL</b> queries and indexing strategies to improve data integrity and execution speed.",
+          "Executed unit, integration, and API testing via <b>Pytest</b> and <b>Postman</b> to ensure contract payload validation.",
+          "Streamlined deployments with <b>Docker</b> and <b>CI/CD pipelines</b>, resolving production bugs via application log analysis.",
         ],
-        stack: ["typescript", "react", "redux"],
+        stack: ["python", "fastapi", "postgresql", "docker"],
       },
     ],
   },

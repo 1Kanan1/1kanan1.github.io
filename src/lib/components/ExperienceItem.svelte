@@ -53,7 +53,7 @@
             class="list-disc list-outside ml-4 space-y-2 text-muted-foreground mb-6 font-mono text-sm"
         >
             {#each description as line}
-                <li>{line}</li>
+                <li>{@html line}</li>
             {/each}
         </ul>
         {#if stack.length > 0}
