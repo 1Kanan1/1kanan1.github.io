@@ -1,6 +1,5 @@
 "use client";
 
-import { Tabs, TabsIndicator, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEffect, useRef, useState } from "react";
 
 const navItems = [
@@ -12,22 +11,21 @@ const navItems = [
 
 export default function Nav() {
   const [active, setActive] = useState("home");
-  const isScrolling = useRef(false);
+  const [pill, setPill] = useState<{
+    left: number;
+    top: number;
+    width: number;
+    height: number;
+  } | null>(null);
+  const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (isScrolling.current) return;
-
         const visible = entries.find((entry) => entry.isIntersecting);
-
-        if (visible) {
-          setActive(visible.target.id);
-        }
+        if (visible) setActive(visible.target.id);
       },
-      {
-        rootMargin: "-40% 0px -40% 0px",
-      },
+      { rootMargin: "-40% 0px -40% 0px" },
     );
 
     navItems.forEach(({ value }) => {
@@ -38,35 +36,55 @@ export default function Nav() {
     return () => observer.disconnect();
   }, []);
 
-  const scrollTo = (id: string) => {
-    isScrolling.current = true;
+  // Measure the active link and drive the sliding pill. Same approach
+  // Tabs.Indicator used internally, minus the tab semantics.
+  useEffect(() => {
+    const list = listRef.current;
+    const link = list?.querySelector<HTMLElement>(`[data-value="${active}"]`);
+    if (!list || !link) return;
 
-    document.getElementById(id)?.scrollIntoView();
+    const measure = () =>
+      setPill({
+        left: link.offsetLeft,
+        top: link.offsetTop,
+        width: link.offsetWidth,
+        height: link.offsetHeight,
+      });
 
-    setTimeout(() => {
-      isScrolling.current = false;
-    }, 800);
-  };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(link);
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, [active]);
 
   return (
-    <nav className="pointer-events-none fixed top-6 inset-x-0 z-50 flex justify-center">
-      <Tabs value={active} onValueChange={(val: string) => setActive(val)}>
-        <TabsList className="pointer-events-auto relative isolate flex h-auto items-center gap-2 rounded-full border border-border bg-background/80 px-1 py-6 shadow-lg backdrop-blur-md">
-          {/* Theme-aligned sliding pill */}
-          <TabsIndicator className="rounded-full bg-muted shadow-xs" />
+    <nav className="pointer-events-none fixed top-6 inset-x-0 z-50 flex justify-center px-4">
+      <ul
+        ref={listRef}
+        className="pointer-events-auto relative isolate flex w-max max-w-full items-center gap-2 overflow-x-auto rounded-full border border-border bg-background/80 p-1 shadow-lg backdrop-blur-md"
+      >
+        {pill && (
+          <span
+            aria-hidden="true"
+            className="absolute z-0 rounded-full bg-muted shadow-xs transition-[left,top,width,height] duration-300 ease-out"
+            style={{ left: pill.left, top: pill.top, width: pill.width, height: pill.height }}
+          />
+        )}
 
-          {navItems.map((item) => (
-            <TabsTrigger
-              key={item.value}
-              value={item.value}
-              onClick={() => scrollTo(item.value)}
-              className="relative z-10 rounded-full px-4 py-5 text-xs sm:text-sm font-medium transition-colors text-muted-foreground hover:text-foreground duration-300 data-active:text-foreground cursor-pointer"
+        {navItems.map((item) => (
+          <li key={item.value}>
+            <a
+              href={`#${item.value}`}
+              data-value={item.value}
+              aria-current={active === item.value ? "true" : undefined}
+              className="relative z-10 block rounded-full px-4 py-3 text-xs sm:text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors duration-300 hover:text-foreground aria-[current]:text-foreground"
             >
               {item.label}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
+            </a>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }

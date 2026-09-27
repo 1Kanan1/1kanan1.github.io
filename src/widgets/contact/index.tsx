@@ -86,17 +86,19 @@ export default function Contact({ className }: { className?: string }) {
               onClick={handleCopyEmail}
               className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-xs font-mono text-muted-foreground transition-colors duration-300 hover:border-foreground/30 hover:text-foreground cursor-pointer shrink-0"
             >
-              {copied ? (
-                <>
-                  <Check className="size-3.5 text-emerald-500" />
-                  <span className="text-emerald-500">Copied</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="size-3.5" />
-                  <span>Copy</span>
-                </>
-              )}
+              <span aria-live="polite" className="inline-flex items-center gap-1.5">
+                {copied ? (
+                  <>
+                    <Check className="size-3.5 text-emerald-500" aria-hidden="true" />
+                    <span className="text-emerald-500">Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="size-3.5" aria-hidden="true" />
+                    <span>Copy</span>
+                  </>
+                )}
+              </span>
             </button>
           </div>
 
