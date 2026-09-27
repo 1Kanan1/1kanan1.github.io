@@ -13,15 +13,12 @@ export default function Hero() {
       className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden font-sans text-foreground select-none"
     >
       {/* Center Giant Stacked Typography */}
-      <div className="pointer-events-none relative z-20 flex flex-col items-center justify-center">
-        <h1 className="text-[20vw] sm:text-[18vw] md:text-[16vw] lg:text-[14vw] font-black leading-[0.75] tracking-tighter text-foreground">
-          KANAN
-        </h1>
-        <h1
-          className="text-[20vw] sm:text-[18vw] md:text-[16vw] lg:text-[14vw] font-black leading-[0.75] tracking-tighter text-transparent"
-          style={{ WebkitTextStroke: "2px var(--border)" }}
-        >
-          HASANZADE
+      <div className="pointer-events-none relative z-20">
+        <h1 className="text-[20vw] sm:text-[18vw] md:text-[16vw] lg:text-[14vw] font-black leading-[0.75] tracking-tighter flex flex-col items-center">
+          <span className="text-foreground">KANAN</span>
+          <span className="text-transparent" style={{ WebkitTextStroke: "2px var(--border)" }}>
+            HASANZADE
+          </span>
         </h1>
       </div>
 
