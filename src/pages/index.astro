@@ -1,0 +1,20 @@
+---
+import Base from "@/layouts/base.astro";
+import Spotlight from "@/components/spotlight.astro";
+import Contact from "@/widgets/contact.astro";
+import Experience from "@/widgets/experience.astro";
+import Hero from "@/widgets/hero.astro";
+import Nav from "@/widgets/nav.astro";
+import Skills from "@/widgets/skills.astro";
+---
+
+<Base title="Kanan Hasanzade">
+  <Spotlight />
+  <Nav />
+  <main class="relative z-10">
+    <Hero />
+    <Skills class="scroll-mt-16" />
+    <Experience class="scroll-mt-16" />
+  </main>
+  <Contact class="scroll-mt-16" />
+</Base>

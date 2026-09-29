@@ -1,0 +1,27 @@
+---
+// The cursor spotlight needs no framework. Three static layers plus a small
+// script that writes the pointer position to CSS custom properties, which the
+// spotlight-mask / spotlight-glow utilities read. No hydration, no React.
+---
+
+<div class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+  {/* Base faint grid across the entire page */}
+  <div class="absolute inset-0 bg-grid opacity-10"></div>
+
+  {/* Interactive Spotlight: reveals grid lines with higher intensity */}
+  <div class="absolute inset-0 bg-grid spotlight-mask"></div>
+
+  {/* Interactive Spotlight: soft ambient radial glow following cursor */}
+  <div class="absolute inset-0 spotlight-glow"></div>
+</div>
+
+<script>
+  const root = document.documentElement;
+
+  function track(e: MouseEvent) {
+    root.style.setProperty("--mouse-x", `${e.clientX}px`);
+    root.style.setProperty("--mouse-y", `${e.clientY}px`);
+  }
+
+  window.addEventListener("mousemove", track, { passive: true });
+</script>

@@ -1,0 +1,155 @@
+---
+import { ArrowUpRight, Check, Copy, Mail } from "lucide-react";
+import Container from "@/components/container.astro";
+import { cn } from "@/lib/utils";
+
+const EMAIL = "khasaznade@gmail.com";
+
+const links = [
+  {
+    name: "GitHub",
+    url: "https://github.com/1Kanan1",
+    handle: "@1Kanan1",
+    icon: "github",
+  },
+  {
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/khasanzade",
+    handle: "Kanan Hasanzade",
+    icon: "linkedin",
+  },
+];
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer
+  id="contact"
+  class={cn(
+    "min-h-screen py-24 md:py-32 scroll-mt-16 bg-transparent text-foreground flex flex-col justify-between",
+    className,
+  )}
+>
+  <Container class="flex-1 flex flex-col justify-between items-center">
+    <div class="w-full max-w-2xl flex flex-col gap-10">
+      {/* Header */}
+      <div class="flex flex-col gap-3">
+        <h2 class="text-3xl md:text-4xl font-black tracking-tight text-foreground">Contact</h2>
+        <p class="text-sm md:text-base text-muted-foreground font-light leading-relaxed">
+          Open to new engineering challenges, frontend architecture, backend systems, and
+          collaborations. Feel free to reach out.
+        </p>
+      </div>
+
+      {/* Email Action Card */}
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border bg-muted/30 p-5 backdrop-blur-sm transition-colors duration-300 hover:border-foreground/20">
+        <div class="flex items-center gap-3">
+          <div class="size-9 rounded-lg border border-border bg-background flex items-center justify-center text-muted-foreground">
+            <Mail class="size-4" />
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xs font-mono text-muted-foreground">Direct Email</span>
+            <a
+              href={`mailto:${EMAIL}`}
+              class="text-sm sm:text-base font-semibold text-foreground hover:underline transition-colors"
+            >
+              {EMAIL}
+            </a>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          data-copy-email={EMAIL}
+          class="inline-flex items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-xs font-mono text-muted-foreground transition-colors duration-300 hover:border-foreground/30 hover:text-foreground cursor-pointer shrink-0"
+        >
+          <span aria-live="polite" class="inline-flex items-center gap-1.5">
+            <Copy data-copy-idle class="size-3.5" aria-hidden="true" />
+            <Check data-copy-done class="hidden size-3.5 text-emerald-500" aria-hidden="true" />
+            <span data-copy-text>Copy</span>
+          </span>
+        </button>
+      </div>
+
+      {/* Links Grid */}
+      <div class="flex flex-col gap-3">
+        <span class="text-xs font-mono font-medium uppercase tracking-widest text-muted-foreground">
+          Socials &amp; Code
+        </span>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {
+            links.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-center justify-between rounded-xl border border-border bg-muted/30 p-4 transition-colors duration-300 hover:border-foreground/20 hover:bg-muted/50 cursor-pointer"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
+                    {link.icon === "github" ? (
+                      <svg class="size-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                        />
+                      </svg>
+                    ) : (
+                      <svg class="size-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                      </svg>
+                    )}
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-sm font-semibold text-foreground">{link.name}</span>
+                    <span class="text-xs font-mono text-muted-foreground">{link.handle}</span>
+                  </div>
+                </div>
+
+                <ArrowUpRight class="size-4 text-muted-foreground transition-transform duration-300 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom Colophon / Copyright */}
+    <div class="w-full mt-24 pt-8 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground">
+      <span>© {year} Kanan Hasanzade</span>
+      <span>Built with Astro &amp; Tailwind CSS</span>
+    </div>
+  </Container>
+</footer>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>("[data-copy-email]");
+  if (button) {
+    const text = button.querySelector<HTMLElement>("[data-copy-text]");
+    const idle = button.querySelector<HTMLElement>("[data-copy-idle]");
+    const done = button.querySelector<HTMLElement>("[data-copy-done]");
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    const setState = (copied: boolean) => {
+      if (text) text.textContent = copied ? "Copied" : "Copy";
+      if (text) text.classList.toggle("text-emerald-500", copied);
+      idle?.classList.toggle("hidden", copied);
+      done?.classList.toggle("hidden", !copied);
+    };
+
+    button.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(button.dataset.copyEmail!);
+      setState(true);
+
+      clearTimeout(timer);
+      timer = setTimeout(() => setState(false), 2000);
+    });
+  }
+</script>

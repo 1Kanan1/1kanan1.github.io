@@ -1,0 +1,92 @@
+---
+const navItems = [
+  { value: "home", label: "Home" },
+  { value: "skills", label: "Skills" },
+  { value: "experience", label: "Experience" },
+  { value: "contact", label: "Contact" },
+];
+---
+
+<nav class="pointer-events-none fixed top-6 inset-x-0 z-50 flex justify-center px-4">
+  <ul
+    data-nav-list
+    class="pointer-events-auto relative isolate flex w-max max-w-full items-center gap-2 overflow-x-auto rounded-full border border-border bg-background/80 p-1 shadow-lg backdrop-blur-md"
+  >
+    <span
+      data-nav-pill
+      aria-hidden="true"
+      class="absolute z-0 rounded-full bg-muted shadow-xs transition-[left,top,width,height] duration-300 ease-out"
+      style="left: 0; top: 0; width: 0; height: 0"
+    >
+    </span>
+
+    {
+      navItems.map((item) => (
+        <li>
+          <a
+            href={`#${item.value}`}
+            data-value={item.value}
+            class="relative z-10 block rounded-full px-4 py-3 text-xs sm:text-sm font-medium whitespace-nowrap text-muted-foreground transition-colors duration-300 hover:text-foreground aria-[current]:text-foreground"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  const list = document.querySelector<HTMLUListElement>("[data-nav-list]");
+  const pill = document.querySelector<HTMLElement>("[data-nav-pill]");
+  if (list && pill) {
+    const links = Array.from(list.querySelectorAll<HTMLAnchorElement>("[data-value]"));
+
+    const setActive = (value: string) => {
+      for (const link of links) {
+        if (link.dataset.value === value) link.setAttribute("aria-current", "true");
+        else link.removeAttribute("aria-current");
+      }
+    };
+
+    // Slide the pill under whichever link is active. Same approach
+    // Tabs.Indicator used internally, minus the tab semantics.
+    const movePill = (link: HTMLElement) => {
+      pill.style.left = `${link.offsetLeft}px`;
+      pill.style.top = `${link.offsetTop}px`;
+      pill.style.width = `${link.offsetWidth}px`;
+      pill.style.height = `${link.offsetHeight}px`;
+    };
+
+    let current: HTMLElement | null = null;
+
+    const show = (link: HTMLElement) => {
+      if (link === current) return;
+      current = link;
+      setActive(link.dataset.value!);
+      movePill(link);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (!visible) return;
+        const link = links.find((l) => l.dataset.value === visible.target.id);
+        if (link) show(link);
+      },
+      { rootMargin: "-40% 0px -40% 0px" },
+    );
+
+    for (const link of links) {
+      const section = document.getElementById(link.dataset.value!);
+      if (section) observer.observe(section);
+    }
+
+    // Initial placement: first link, then keep it aligned on resize.
+    const first = links[0];
+    if (first) show(first);
+    const resize = new ResizeObserver(() => current && movePill(current));
+    resize.observe(list);
+    for (const link of links) resize.observe(link);
+  }
+</script>
