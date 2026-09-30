@@ -50,7 +50,7 @@ const year = new Date().getFullYear();
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border bg-muted/30 p-5 backdrop-blur-sm transition-colors duration-300 hover:border-foreground/20">
         <div class="flex items-center gap-3">
           <div class="size-9 rounded-lg border border-border bg-background flex items-center justify-center text-muted-foreground">
-            <Mail class="size-4" />
+            <Mail className="size-4" />
           </div>
           <div class="flex flex-col">
             <span class="text-xs font-mono text-muted-foreground">Direct Email</span>
@@ -69,8 +69,8 @@ const year = new Date().getFullYear();
           class="inline-flex items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-xs font-mono text-muted-foreground transition-colors duration-300 hover:border-foreground/30 hover:text-foreground cursor-pointer shrink-0"
         >
           <span aria-live="polite" class="inline-flex items-center gap-1.5">
-            <Copy data-copy-idle class="size-3.5" aria-hidden="true" />
-            <Check data-copy-done class="hidden size-3.5 text-emerald-500" aria-hidden="true" />
+            <Copy data-copy-idle className="size-3.5" aria-hidden="true" />
+            <Check data-copy-done className="hidden size-3.5 text-emerald-500" aria-hidden="true" />
             <span data-copy-text>Copy</span>
           </span>
         </button>
@@ -113,7 +113,7 @@ const year = new Date().getFullYear();
                   </div>
                 </div>
 
-                <ArrowUpRight class="size-4 text-muted-foreground transition-transform duration-300 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ArrowUpRight className="size-4 text-muted-foreground transition-transform duration-300 group-hover:text-foreground group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
             ))
           }
