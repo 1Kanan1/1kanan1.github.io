@@ -38,7 +38,7 @@ const year = new Date().getFullYear();
   <Container class="flex-1 flex flex-col justify-between items-center">
     <div class="w-full max-w-2xl flex flex-col gap-10">
       {/* Header */}
-      <div class="flex flex-col gap-3">
+      <div data-reveal class="flex flex-col gap-3">
         <h2 class="text-3xl md:text-4xl font-black tracking-tight text-foreground">Contact</h2>
         <p class="text-sm md:text-base text-muted-foreground font-light leading-relaxed">
           Open to new engineering challenges, frontend architecture, backend systems, and
@@ -47,7 +47,11 @@ const year = new Date().getFullYear();
       </div>
 
       {/* Email Action Card */}
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border bg-muted/30 p-5 backdrop-blur-sm transition-colors duration-300 hover:border-foreground/20">
+      <div
+        data-reveal
+        style="--reveal-delay: 90ms"
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border bg-muted/30 p-5 backdrop-blur-sm transition-colors duration-300 hover:border-foreground/20"
+      >
         <div class="flex items-center gap-3">
           <div class="size-9 rounded-lg border border-border bg-background flex items-center justify-center text-muted-foreground">
             <Mail className="size-4" />
@@ -77,7 +81,7 @@ const year = new Date().getFullYear();
       </div>
 
       {/* Links Grid */}
-      <div class="flex flex-col gap-3">
+      <div data-reveal style="--reveal-delay: 180ms" class="flex flex-col gap-3">
         <span class="text-xs font-mono font-medium uppercase tracking-widest text-muted-foreground">
           Socials &amp; Code
         </span>
@@ -122,7 +126,11 @@ const year = new Date().getFullYear();
     </div>
 
     {/* Bottom Colophon / Copyright */}
-    <div class="w-full mt-24 pt-8 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground">
+    <div
+      data-reveal
+      style="--reveal-delay: 270ms"
+      class="w-full mt-24 pt-8 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground"
+    >
       <span>© {year} Kanan Hasanzade</span>
       <span>Built with Astro &amp; Tailwind CSS</span>
     </div>

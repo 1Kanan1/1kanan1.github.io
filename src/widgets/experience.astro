@@ -67,7 +67,7 @@ const { items = defaultExperiences, class: className } = Astro.props;
   <Container>
     <div class="w-full max-w-2xl">
       {/* Section Header */}
-      <h2 class="text-3xl md:text-4xl font-black tracking-tight text-foreground">
+      <h2 data-reveal class="text-3xl md:text-4xl font-black tracking-tight text-foreground">
         Work Experience
       </h2>
 
@@ -84,7 +84,11 @@ const { items = defaultExperiences, class: className } = Astro.props;
               const isString = typeof description === "string";
 
               return (
-                <li class={cn("group relative pl-7", !isLast && "pb-12")}>
+                <li
+                  data-reveal
+                  class={cn("group relative pl-7", !isLast && "pb-12")}
+                  style={`--reveal-delay: ${index * 90}ms`}
+                >
                   {/* Timeline Node Dot */}
                   <span
                     class="absolute -left-1.75 top-1.5 size-3 rounded-full border-2 border-background bg-muted-foreground ring-2 ring-border transition-all duration-500 group-hover:ring-muted-foreground"
