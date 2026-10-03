@@ -47,7 +47,10 @@ const {
               observer.unobserve(entry.target);
             }
           },
-          { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
+          // No bottom margin: a negative one shrinks the root box past the
+          // viewport edge, so anything in the last 10% can never fire at
+          // scroll 0 (the hero scroll prompt lives there).
+          { rootMargin: "0px 0px 0px", threshold: 0.1 },
         );
         for (const el of targets) observer.observe(el);
       }
