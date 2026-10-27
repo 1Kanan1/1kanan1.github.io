@@ -21,37 +21,71 @@ const defaultExperiences: ExperienceItem[] = [
     company: "Andersen Lab",
     logo: "/andersen-logo.png",
     description: [
-      "Developed production web application features using React, Next.js, and TypeScript, based on business requirements and UI designs.",
-      "Built reusable UI components and responsive interfaces using TailwindCSS and MUI.",
-      "Implemented client-side state management and asynchronous data fetching with Redux, TanStack Query, and Axios.",
-      "Integrated frontend applications with REST APIs, handling data, loading states, validation, and errors.",
-      "Collaborated with developers, QA, and other team members in an Agile/Scrum environment to deliver and maintain production features.",
+      "Developed and maintained <strong>production frontend features</strong>, translating business requirements and UI specifications into functional, type-safe web applications.",
+      "Built <strong>reusable UI components</strong> and modular frontend features, emphasizing maintainability, responsive design, and consistency across application interfaces.",
+      "Implemented <strong>client-side state management</strong> and asynchronous data-fetching workflows, handling server-state synchronization, caching, and UI updates.",
+      "Integrated frontend applications with <strong>REST APIs</strong>, implementing request handling, data validation, loading states, and error-handling flows.",
+      "Collaborated with engineering and QA teams in an <strong>Agile/Scrum environment</strong>, contributing to feature delivery, debugging, and ongoing application maintenance.",
     ],
     skills: [
-      "React",
-      "Next.js",
+      "React.js",
+      "JavaScript",
       "TypeScript",
-      "Docker",
+      "HTML",
+      "CSS",
+      "Next.js",
+      "Redux.js",
+      "Tailwind CSS",
+      "MUI",
       "React Router",
       "TanStack Query",
-      "Redux",
-      "TailwindCSS",
-      "MUI",
+      "PostgreSQL",
+      "Docker",
+      "CI/CD",
+      "Code Review",
+      "Agile",
+      "Scrum",
     ],
   },
   {
+    id: "itu-wtdc-25",
+    period: "Oct 2025 – Nov 2025",
+    role: "Help Desk",
+    company: "ITU WTDC-25",
+    logo: "/itu-logo.svg",
+    description: [
+      "Provided technical support to delegates, staff, and event teams, resolving hardware, software, connectivity, and IT service issues throughout the event.",
+      "Monitored and prioritized support tickets and incidents, ensuring timely resolution and effective communication with users.",
+      "Collaborated with infrastructure and networking teams to troubleshoot technical issues and maintain reliable IT and communication services throughout the event.",
+    ],
+    skills: ["Help Desk Support", "Technical Support", "Wireless Technologies"],
+  },
+  {
     id: "company",
-    period: "Mar 2024 – May 2025",
+    period: "Mar 2023 – May 2025",
     role: "Python Backend Developer",
     company: "Freelance",
     description: [
-      "Developed and maintained REST APIs and backend services using Python, FastAPI, PostgreSQL, and SQLAlchemy for web applications.",
-      "Built asynchronous API endpoints and implemented application logic, database operations, and data models for core features.",
-      "Implemented JWT-based authentication and integrated third-party services into backend workflows.",
-      "Containerized applications with Docker and configured GitHub Actions workflows for automated testing and deployment.",
-      "Worked with a microservices-oriented architecture, contributing to the development and integration of independent backend services.",
+      "Developed and maintained <strong>backend services and REST APIs</strong>, implementing application logic, service-layer abstractions, and API contracts for web applications.",
+      "Implemented <strong>asynchronous request handling</strong> and database access patterns, supporting data-driven application workflows and core business functionality.",
+      "Designed and maintained <strong>relational data models</strong> and persistence logic, integrating authentication, authorization, and third-party services into backend workflows.",
+      "Containerized backend applications and maintained <strong>CI/CD workflows</strong> for automated testing and deployment, improving consistency across development and delivery environments.",
+      "Contributed to a <strong>microservices-oriented architecture</strong>, supporting service integration, separation of concerns, and maintainable backend components.",
     ],
-    skills: ["Python", "FastAPI", "PostgreSQL"],
+    skills: [
+      "Python",
+      "FastAPI",
+      "SQLAlchemy",
+      "SQL",
+      "SQLite",
+      "PostgreSQL",
+      "Docker",
+      "Kubernetes",
+      "Microservices",
+      "CI/CD",
+      "Code Review",
+      "Design Patterns",
+    ],
   },
 ];
 
@@ -124,13 +158,13 @@ const { items = defaultExperiences, class: className } = Astro.props;
                   </div>
 
                   {/* Description */}
-                  <div class="mt-3 text-sm leading-relaxed text-muted-foreground font-light">
+                  <div class="mt-3 text-sm leading-relaxed text-muted-foreground font-light [&_strong]:font-semibold [&_strong]:text-foreground">
                     {isString ? (
-                      <p>{description}</p>
+                      <p set:html={description} />
                     ) : (
                       <ul class="space-y-1.5 list-disc list-outside pl-4 marker:text-muted-foreground/60">
                         {description.map((desc) => (
-                          <li>{desc}</li>
+                          <li set:html={desc} />
                         ))}
                       </ul>
                     )}
